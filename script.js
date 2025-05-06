@@ -1,11 +1,6 @@
 const order = [];
 let selectedIndex = 0;
-const menuItems = [
-  { name: "Burger", price: 15000 },
-  { name: "Hotdog", price: 12000 },
-  { name: "Roti Cane", price: 10000 },
-  { name: "Kentang", price: 8000 }
-];
+const menuItems = document.querySelectorAll('.item');
 const beep = document.getElementById('beep');
 const inputNama = document.getElementById('nama');
 const struk = document.getElementById('struk');
@@ -76,7 +71,7 @@ function sendToWhatsApp() {
   struk.style.display = 'block';
   struk.innerText = `Nama: ${nama}\n\n${orderListText}\nTerima kasih!`;
 
-  const adminNumber = "6281514444777"; // Ganti nomor WA admin
+  const adminNumber = "62815144"; // Ganti nomor WA admin
   window.open(`https://wa.me/${adminNumber}?text=${message}`, '_blank');
 }
 
