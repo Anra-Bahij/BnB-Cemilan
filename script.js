@@ -71,7 +71,7 @@ function sendToWhatsApp() {
   struk.style.display = 'block';
   struk.innerText = `Nama: ${nama}\n\n${orderListText}\nTerima kasih!`;
 
-  const adminNumber = "62815144"; // Ganti nomor WA admin
+  const adminNumber = "6281514444777"; // Ganti nomor WA admin
   window.open(`https://wa.me/${adminNumber}?text=${message}`, '_blank');
 }
 
