@@ -5,6 +5,7 @@ const beep = document.getElementById('beep');
 const inputNama = document.getElementById('nama');
 const struk = document.getElementById('struk');
 const orderList = document.getElementById('orderList');
+const kategoriContainers = document.querySelectorAll('.category');
 
 highlightSelected();
 
@@ -71,7 +72,7 @@ function sendToWhatsApp() {
   struk.style.display = 'block';
   struk.innerText = `Nama: ${nama}\n\n${orderListText}\nTerima kasih!`;
 
-  const adminNumber = "6281514444777"; // Ganti nomor WA admin
+  const adminNumber = "6281513961680"; // Ganti nomor WA admin
   window.open(`https://wa.me/${adminNumber}?text=${message}`, '_blank');
 }
 
@@ -97,4 +98,17 @@ document.addEventListener('keydown', (e) => {
   } else if (e.key === 'Escape') {
     struk.style.display = 'none';
   }
+});
+
+// Filter kategori
+const filterSelect = document.getElementById('filter-kategori');
+filterSelect.addEventListener('change', () => {
+  const selected = filterSelect.value;
+  kategoriContainers.forEach(container => {
+    if (selected === "all" || container.dataset.kategori === selected) {
+      container.style.display = 'grid';
+    } else {
+      container.style.display = 'none';
+    }
+  });
 });
