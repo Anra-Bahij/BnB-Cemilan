@@ -17,11 +17,32 @@ h1 {
   margin-bottom: 20px;
 }
 
-.menu {
+select, label {
+  color: #00ffcc;
+  font-size: 1em;
+}
+
+select {
+  padding: 8px;
+  margin-bottom: 20px;
+  background: black;
+  color: #00ffcc;
+  border: 2px solid #00ffcc;
+  font-size: 1em;
+}
+
+.category {
   display: grid;
   grid-template-columns: repeat(2, 150px);
   gap: 15px;
   margin-bottom: 30px;
+}
+
+.category h4 {
+  grid-column: span 2;
+  color: #00ffcc;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .item {
@@ -38,6 +59,7 @@ h1 {
   border: 2px solid #00ffcc;
   color: #00ffcc;
 }
+
 input[type="text"] {
   padding: 10px;
   font-size: 1em;
