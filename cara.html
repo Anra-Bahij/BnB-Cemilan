@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cara Menggunakan BnB Cemilan</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      color: #00ffcc;
+      font-family: 'Courier New', monospace;
+      line-height: 1.6;
+    }
+
+    .container {
+      padding: 20px;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .typewriter-container {
+      text-align: center;
+      margin-top: 30px;
+      margin-bottom: 40px;
+    }
+
+    .typewriter-line1,
+    .typewriter-line2 {
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid #00ffcc;
+      font-size: 1.4em;
+    }
+
+    .typewriter-line1 {
+      animation: typing1 3.2s steps(30, end) forwards, blink 0.8s step-end infinite;
+    }
+
+    .typewriter-line2 {
+      width: 0;
+      opacity: 0;
+      animation: typing2 2s steps(10, end) forwards;
+      animation-delay: 3.4s;
+    }
+
+    @keyframes typing1 {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes typing2 {
+      0% { width: 0; opacity: 0 }
+      100% { width: 100%; opacity: 1 }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent }
+    }
+
+    ol {
+      padding-left: 20px;
+      font-size: 1em;
+    }
+
+    li {
+      margin-bottom: 15px;
+    }
+
+    .highlight {
+      color: #ffff66;
+      font-weight: bold;
+    }
+
+    .back-btn {
+      margin-top: 30px;
+      display: block;
+      width: 100%;
+      text-align: center;
+      font-size: 1em;
+      padding: 12px;
+      background-color: #00ffcc;
+      color: black;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 0 10px #00ffcc;
+      transition: background 0.3s;
+    }
+
+    .back-btn:hover {
+      background-color: #00e6b8;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="typewriter-container">
+      <div class="typewriter-line1">Cara Order di Website</div><br>
+      <div class="typewriter-line2">BnB Cemilan</div>
+    </div>
+
+    <ol>
+      <li>Pilih <span class="highlight">kategori</span> makanan (Cemilan, Minuman, dll).</li>
+      <li>Klik makanan/minuman yang ingin Anda pesan.</li>
+      <li>Pesanan akan tampil di daftar <span class="highlight">"Pesanan Anda"</span>.</li>
+      <li>Klik tanda <span class="highlight">×</span> untuk menghapus item.</li>
+      <li>Masukkan <span class="highlight">nama</span> Anda di kolom bawah.</li>
+      <li>Tekan tombol <span class="highlight">"Pesan Sekarang"</span> untuk kirim via WhatsApp.</li>
+      <li>Lihat struk & konfirmasi di WhatsApp. Selesai!</li>
+    </ol>
+
+    <a href="index.html" class="back-btn">Kembali ke Menu Utama</a>
+  </div>
+</body>
+</html>
