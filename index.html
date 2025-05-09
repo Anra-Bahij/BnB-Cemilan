@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>BnB Cemilan</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .info-btn {
+      display: inline-block;
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 15px;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
   <h1>BnB Cemilan</h1>
@@ -21,67 +33,67 @@
 
   <h3>Pesanan Anda:</h3>
   <ul id="orderList"></ul>
-    <a href="cara.html" class="info-btn">Cara Order</a>
+  <a href="cara.html" class="info-btn">Cara Order</a>
 
+  <!-- Menu Kategori -->
   <div class="category" data-kategori="Mie Instan">
     <h4>Aneka Mie Instan</h4>
     <div class="item" data-price="20000">Indomie Goreng - Rp6.000</div>
     <div class="item" data-price="6000">Indomie Aceh - Rp6.000</div>
-      <div class="item" data-price="6000">Indomie Rendang - Rp6.000</div>
-        <div class="item" data-price="6000">Indomie Ayam Geprek - Rp6.000</div>
-        <div class="item" data-price="6000">Indomie Soto - Rp6.000</div>
-        <div class="item" data-price="6000">Indomie Kari - Rp6.000</div>
-        <div class="item" data-price="4000">Mie Sakura - Rp4.000</div>
-        <div class="item" data-price="5000">Mie Ayam - Rp5.000</div>
-        <div class="item" data-price="6000">Spaghetti Wow - Rp6.000</div>
-        <div class="item" data-price="4000">Tambah Telur - Rp4.000</div>
+    <div class="item" data-price="6000">Indomie Rendang - Rp6.000</div>
+    <div class="item" data-price="6000">Indomie Ayam Geprek - Rp6.000</div>
+    <div class="item" data-price="6000">Indomie Soto - Rp6.000</div>
+    <div class="item" data-price="6000">Indomie Kari - Rp6.000</div>
+    <div class="item" data-price="4000">Mie Sakura - Rp4.000</div>
+    <div class="item" data-price="5000">Mie Ayam - Rp5.000</div>
+    <div class="item" data-price="6000">Spaghetti Wow - Rp6.000</div>
+    <div class="item" data-price="4000">Tambah Telur - Rp4.000</div>
   </div>
 
   <div class="category" data-kategori="Cemilan">
     <h4>Cemilan</h4>
     <div class="item" data-price="12000">Roti Cane Jumbo - Rp12.000</div>
-     <div class="item" data-price="6000">Roti Cane Mini - Rp6.000</div>
+    <div class="item" data-price="6000">Roti Cane Mini - Rp6.000</div>
     <div class="item" data-price="5000">Kentang Goreng - Rp5.000</div>
     <div class="item" data-price="6000">Donat Goreng(3pcs) - Rp6.000</div>
-     <div class="item" data-price="6000">Nugget(5pcs) - Rp6.000</div>
-      <div class="item" data-price="10000">Cireng Bumbu Rujak(4pcs) - Rp6.000</div>
-      <div class="item" data-price="8000">Beef Steak+Mix Vegetable - Rp8.000</div>
-      <div class="item" data-price="13000">Beef Steak+Mix Vegetable+Ken
-      tang - Rp13.000</div>
-      <div class="item" data-price="5000">Sosis Bakar(3pcs) - Rp5.000</div>
-       <div class="item" data-price="5000">Sosis Goreng(3pcs) - Rp5.000</div>
-      <div class="item" data-price="7000">Sosis Bakar Jumbo - Rp7.000</div>
+    <div class="item" data-price="6000">Nugget(5pcs) - Rp6.000</div>
+    <div class="item" data-price="10000">Cireng Bumbu Rujak(4pcs) - Rp6.000</div>
+    <div class="item" data-price="8000">Beef Steak+Mix Vegetable - Rp8.000</div>
+    <div class="item" data-price="13000">Beef Steak+Mix Vegetable+Kentang - Rp13.000</div>
+    <div class="item" data-price="5000">Sosis Bakar(3pcs) - Rp5.000</div>
+    <div class="item" data-price="5000">Sosis Goreng(3pcs) - Rp5.000</div>
+    <div class="item" data-price="7000">Sosis Bakar Jumbo - Rp7.000</div>
   </div>
   
   <div class="category" data-kategori="Aneka Burger">
     <h4>Aneka Sandwich</h4>
-    <div class="item" data-price="7000">Burger Beef Slice- Rp7.000</div>
+    <div class="item" data-price="7000">Burger Beef Slice - Rp7.000</div>
     <div class="item" data-price="10000">Burger Beef Patty Tebal - Rp10.000</div>
-      <div class="item" data-price="10000">Burger Chicken - Rp10.000</div>
-      <div class="item" data-price="8000">Hotdog - Rp8.000</div>
-        <div class="item" data-price="2000">Tambah Keju Slice - Rp2.000</div>
+    <div class="item" data-price="10000">Burger Chicken - Rp10.000</div>
+    <div class="item" data-price="8000">Hotdog - Rp8.000</div>
+    <div class="item" data-price="2000">Tambah Keju Slice - Rp2.000</div>
   </div>
 
   <div class="category" data-kategori="Minuman Hot">
     <h4>Hot Drink</h4>
     <div class="item" data-price="4000">Hot Chocolate Milk - Rp4.000</div>
     <div class="item" data-price="4000">Hot Milk Putih - Rp4.000</div>
-     <div class="item" data-price="4000">Hot Black Coffee - Rp4.000</div>
-     <div class="item" data-price="4000">Hot Indocafe - Rp4.000</div>
-      <div class="item" data-price="4000">Hot Tea - Rp4.000</div>
-      <div class="item" data-price="4000">Hot Matcha - Rp4.000</div>
+    <div class="item" data-price="4000">Hot Black Coffee - Rp4.000</div>
+    <div class="item" data-price="4000">Hot Indocafe - Rp4.000</div>
+    <div class="item" data-price="4000">Hot Tea - Rp4.000</div>
+    <div class="item" data-price="4000">Hot Matcha - Rp4.000</div>
   </div>
   
-   <div class="category" data-kategori="Minuman Ice">
+  <div class="category" data-kategori="Minuman Ice">
     <h4>Ice Drink</h4>
     <div class="item" data-price="5000">Drink Beng Beng - Rp5.000</div>
     <div class="item" data-price="5000">Good Day Cappucino - Rp5.000</div>
-      <div class="item" data-price="5000">Ice Milk Cokelat - Rp5.000</div>
-        <div class="item" data-price="5000">Good Day Cappucino - Rp5.000</div>
-        <div class="item" data-price="2000">Ice Tea - Rp2.000</div>
-        <div class="item" data-price="3000">Ice Tea Cup - Rp3.000</div>
-        <div class="item" data-price="5000">Ice Matcha - Rp5.000</div>
-        <div class="item" data-price="5000">Ice Marimas Jeruk - Rp5.000</div>
+    <div class="item" data-price="5000">Ice Milk Cokelat - Rp5.000</div>
+    <div class="item" data-price="5000">Good Day Cappucino - Rp5.000</div>
+    <div class="item" data-price="2000">Ice Tea - Rp2.000</div>
+    <div class="item" data-price="3000">Ice Tea Cup - Rp3.000</div>
+    <div class="item" data-price="5000">Ice Matcha - Rp5.000</div>
+    <div class="item" data-price="5000">Ice Marimas Jeruk - Rp5.000</div>
   </div>
 
   <input type="text" id="nama" placeholder="Masukkan Nama Anda" />
