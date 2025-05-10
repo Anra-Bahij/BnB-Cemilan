@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Seblak BnB</title>
+  <style>
+    body {
+      background: black;
+      color: #00ffcc;
+      font-family: 'Courier New', monospace;
+      padding: 20px;
+      max-width: 700px;
+      margin: auto;
+    }
+    h1, h2 {
+      text-align: center;
+      text-shadow: 0 0 10px #00ffcc;
+    }
+    .porsi-container {
+      border: 2px dashed #00ffcc;
+      margin: 20px 0;
+      padding: 10px;
+    }
+    .topping-group {
+      margin-bottom: 35px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    input[type="number"] {
+      width: 60px;
+      padding: 5px;
+      background: black;
+      border: 1px solid #00ffcc;
+      color: #00ffcc;
+      text-align: center;
+    }
+    button {
+      background-color: #00ffcc;
+      color: black;
+      padding: 10px 15px;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+    .total-harga {
+      font-size: 1.2em;
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Seblak BnB</h1>
+
+  <div id="porsi-list"></div>
+
+  <button onclick="tambahPorsi()">+ Tambah Porsi</button>
+  <div class="total-harga" id="total-harga">Total: Rp0</div>
+
+  <input type="text" id="nama" placeholder="Nama Anda" style="margin-top: 20px; width: 100%; padding: 10px; border: 1px solid #00ffcc; background: black; color: #00ffcc;">
+  <button onclick="kirimWhatsApp()">Kirim ke WhatsApp</button>
+
+  <script>
+    const toppingData = {
+      "1000": ["Siomay Kering", "Pilus Cikur", "Kerupuk Warna", "Cuanki Lidah", "Otak Otak"],
+      "1500": ["Scallop", "Bakso Sapi", "Dimsum", "Telur puyuh", "sosis" , "Mie"],
+      "2000": ["Shrimp Tail", "Bakso Ikan", "Dumpling Keju", "Dumpling Spicy Chiken", "Cikuwa", "Crab Stick"],
+       "4000": ["Telur Ayam"],
+        "6000": ["Indomie"],
+    };
+
+    let porsiList = [];
+
+    function tambahPorsi() {
+      const porsiIndex = porsiList.length;
+      porsiList.push({});
+      const container = document.createElement('div');
+      container.className = "porsi-container";
+      container.innerHTML = `<h2>Porsi ${porsiIndex + 1}</h2>`;
+
+      Object.entries(toppingData).forEach(([harga, toppings]) => {
+        const group = document.createElement('div');
+        group.className = 'topping-group';
+        group.innerHTML = `<strong>Harga Rp${harga}</strong>`;
+        toppings.forEach(topping => {
+          const id = `p${porsiIndex}_${topping}`;
+          group.innerHTML += `
+            <label for="${id}">${topping} 
+              <input type="number" min="0" value="0" id="${id}" onchange="updateTopping(${porsiIndex}, '${topping}', ${harga})">
+            </label>`;
+        });
+        container.appendChild(group);
+      });
+
+      document.getElementById("porsi-list").appendChild(container);
+    }
+
+    function updateTopping(index, topping, harga) {
+      const input = document.getElementById(`p${index}_${topping}`);
+      const jumlah = parseInt(input.value) || 0;
+      if (!porsiList[index]) porsiList[index] = {};
+      porsiList[index][topping] = { jumlah, harga };
+      updateTotal();
+    }
+
+    function updateTotal() {
+      let total = 0;
+      porsiList.forEach(porsi => {
+        Object.values(porsi).forEach(({ jumlah, harga }) => {
+          total += jumlah * harga;
+        });
+      });
+      document.getElementById("total-harga").textContent = `Total: Rp${total.toLocaleString()}`;
+    }
+
+    function kirimWhatsApp() {
+      const nama = document.getElementById("nama").value.trim();
+      if (!nama) return alert("Masukkan nama terlebih dahulu!");
+
+      let pesan = `Halo, saya *${nama}* mau pesan Seblak:%0A`;
+      let total = 0;
+
+      porsiList.forEach((porsi, i) => {
+        pesan += `%0A*Porsi ${i + 1}:*%0A`;
+        Object.entries(porsi).forEach(([topping, { jumlah, harga }]) => {
+          if (jumlah > 0) {
+            pesan += `- ${topping} x${jumlah} (Rp${harga})%0A`;
+            total += jumlah * harga;
+          }
+        });
+      });
+
+      pesan += `%0A*Total: Rp${total.toLocaleString()}*`;
+      const nomor = "6281513961680"; // Ganti nomor WA admin
+      window.open(`https://wa.me/${nomor}?text=${pesan}`, '_blank');
+    }
+
+    tambahPorsi(); // default satu porsi saat awal
+  </script>
+</body>
+</html>
