@@ -69,7 +69,7 @@ Kentang - Rp13.000</div>
     <div class="item" data-price="5000">Sosis Goreng(3pcs) - Rp5.000</div>
     <div class="item" data-price="7000">Sosis Bakar Jumbo - Rp7.000</div>
   </div>
-  
+
   <div class="category" data-kategori="Aneka Burger">
     <h4>Aneka Sandwich</h4>
     <div class="item" data-price="7000">Burger Beef Slice - Rp7.000</div>
@@ -88,7 +88,7 @@ Kentang - Rp13.000</div>
     <div class="item" data-price="4000">Hot Tea - Rp4.000</div>
     <div class="item" data-price="4000">Hot Matcha - Rp4.000</div>
   </div>
-  
+
   <div class="category" data-kategori="Minuman Ice">
     <h4>Ice Drink</h4>
     <div class="item" data-price="5000">Drink Beng Beng - Rp5.000</div>
@@ -128,5 +128,16 @@ Kentang - Rp13.000</div>
   </script>
 
   <script src="script.js"></script>
+  <!-- Tombol & Modal QRIS -->
+<button class="info-btn" onclick="tampilkanQRIS()">Bayar via QRIS</button>
+
+<div id="qris-container">
+  <div id="qris-box">
+    <h3>Scan QRIS untuk Pembayaran</h3>
+    <img src="qris2.jpg" alt="QRIS Payment"/>
+    <br>
+    <button id="close-qris" onclick="tutupQRIS()">Tutup</button>
+  </div>
+</div>
 </body>
 </html>
