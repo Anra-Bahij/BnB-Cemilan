@@ -70,7 +70,7 @@ Kentang - Rp13.000</div>
     <div class="item" data-price="7000">Sosis Bakar Jumbo - Rp7.000</div>
   </div>
 
-  <div class="category" data-kategori="Aneka Burger">
+  <div class="category" data-kategori="Aneka Sandwich">
     <h4>Aneka Sandwich</h4>
     <div class="item" data-price="7000">Burger Beef Slice - Rp7.000</div>
     <div class="item" data-price="10000">Burger Beef Patty Tebal - Rp10.000</div>
@@ -128,15 +128,62 @@ Kentang - Rp13.000</div>
   </script>
 
   <script src="script.js"></script>
-  <!-- Tombol & Modal QRIS -->
+<!-- Tombol & Modal QRIS -->
 <button class="info-btn" onclick="tampilkanQRIS()">Bayar via QRIS</button>
 
 <div id="qris-container">
   <div id="qris-box">
     <h3>Scan QRIS untuk Pembayaran</h3>
-<img src="https://files.catbox.moe/uhpfsl.jpg" alt="QRIS Payment"/>
+    <img src="https://files.catbox.moe/uhpfsl.jpg" alt="QRIS Payment"/>
     <button id="close-qris" onclick="tutupQRIS()">Tutup</button>
   </div>
+</div>
+
+<style>
+  /* Tambahan QRIS */
+  #qris-container {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+
+  #qris-box {
+    background: #FF7F00;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  #qris-box img {
+    max-width: 300px;
+    height: auto;
+  }
+
+  #close-qris {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  function tampilkanQRIS() {
+    document.getElementById("qris-container").style.display = "flex";
+  }
+
+  function tutupQRIS() {
+    document.getElementById("qris-container").style.display = "none";
+  }
+</script>
 </div>
 </body>
 </html>
