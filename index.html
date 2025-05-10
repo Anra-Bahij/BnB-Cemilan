@@ -102,6 +102,26 @@
   <div class="struk" id="struk"></div>
   <audio id="beep" src="beep.mp3" preload="auto"></audio>
 
+  <script>
+    function updateStatus() {
+      const now = new Date();
+      const jam = now.getHours();
+      const menit = now.getMinutes().toString().padStart(2, '0');
+      const detik = now.getSeconds().toString().padStart(2, '0');
+      const waktuStr = `${jam}:${menit}:${detik}`;
+
+      document.getElementById("jam-sekarang").textContent = waktuStr;
+
+      const buka = jam >= 8 && jam < 21;
+      const statusEl = document.getElementById("status-text");
+      statusEl.textContent = buka ? "BUKA" : "TUTUP";
+      statusEl.style.color = buka ? "lime" : "red";
+    }
+
+    setInterval(updateStatus, 1000);
+    updateStatus();
+  </script>
+
   <script src="script.js"></script>
 </body>
 </html>
