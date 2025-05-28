@@ -30,20 +30,19 @@
     <option value="all">Semua</option>
     <option value="Mie Instan">Mie Instan</option>
     <option value="Cemilan">Cemilan</option>
-    <option value="Aneka Burger">Aneka Sandwich</option>
+    <option value="Aneka Sandwich">Aneka Sandwich</option>
     <option value="Minuman Hot">Hot Drink</option>
     <option value="Minuman Ice">Ice Drink</option>
   </select>
 
   <h3>Pesanan Anda:</h3>
   <ul id="orderList"></ul>
-  <a href="cara.html" class="info-btn">Cara Order</a>
  <a href="seblak.html" class="button seblak-btn">Seblak BnB</a>
 
   <!-- Menu Kategori -->
   <div class="category" data-kategori="Mie Instan">
     <h4>Aneka Mie Instan</h4>
-    <div class="item" data-price="20000">Indomie Goreng - Rp6.000</div>
+    <div class="item" data-price="6000">Indomie Goreng - Rp6.000</div>
     <div class="item" data-price="6000">Indomie Aceh - Rp6.000</div>
     <div class="item" data-price="6000">Indomie Rendang - Rp6.000</div>
     <div class="item" data-price="6000">Indomie Ayam Geprek - Rp6.000</div>
@@ -62,20 +61,20 @@
     <div class="item" data-price="5000">Kentang Goreng - Rp5.000</div>
     <div class="item" data-price="6000">Donat Goreng(3pcs) - Rp6.000</div>
     <div class="item" data-price="6000">Nugget(5pcs) - Rp6.000</div>
-    <div class="item" data-price="5000">Cireng Bumbu Rujak(4pcs) - Rp5.000</div>
+    <div class="item" data-price="6000">Cireng Bumbu Rujak(4pcs) - Rp6.000</div>
     <div class="item" data-price="8000">Beef Steak+Mix Vegetable - Rp8.000</div>
     <div class="item" data-price="13000">Beef Steak+Mix Vegetable+
 Kentang - Rp13.000</div>
     <div class="item" data-price="5000">Sosis Bakar(3pcs) - Rp5.000</div>
     <div class="item" data-price="5000">Sosis Goreng(3pcs) - Rp5.000</div>
-    <div class="item" data-price="8000">Sosis Bakar Jumbo - Rp8.000</div>
+    <div class="item" data-price="7000">Sosis Bakar Jumbo - Rp7.000</div>
   </div>
 
   <div class="category" data-kategori="Aneka Sandwich">
     <h4>Aneka Sandwich</h4>
     <div class="item" data-price="7000">Burger Beef Slice - Rp7.000</div>
     <div class="item" data-price="10000">Burger Beef Patty Tebal - Rp10.000</div>
-    <div class="item" data-price="10000">Burger Chicken Krispy - Rp10.000</div>
+    <div class="item" data-price="10000">Burger Chicken - Rp10.000</div>
     <div class="item" data-price="8000">Hotdog - Rp8.000</div>
     <div class="item" data-price="2000">Tambah Keju Slice - Rp2.000</div>
   </div>
@@ -95,13 +94,52 @@ Kentang - Rp13.000</div>
     <div class="item" data-price="5000">Drink Beng Beng - Rp5.000</div>
     <div class="item" data-price="5000">Good Day Cappucino - Rp5.000</div>
     <div class="item" data-price="5000">Ice Milk Cokelat - Rp5.000</div>
-    <div class="item" data-price="5000">Good Day Cappucino - Rp5.000</div>
     <div class="item" data-price="2000">Ice Tea - Rp2.000</div>
     <div class="item" data-price="3000">Ice Tea Cup - Rp3.000</div>
     <div class="item" data-price="5000">Ice Matcha - Rp5.000</div>
     <div class="item" data-price="5000">Ice Marimas Jeruk - Rp5.000</div>
   </div>
   
+<label for="pakai-ongkir">Mau diantar?</label>
+<select id="pakai-ongkir">
+  <option value="tidak">Tidak</option>
+  <option value="ya">Ya (ongkos kirim 8k)</option>
+</select>
+
+<div id="alamat-group" style="display: none; margin-top: 1em;">
+  <label for="rt">RT:</label>
+  <select id="rt">
+    <option value="">Pilih RT</option>
+    <option value="01">01</option>
+    <option value="02">02</option>
+    <option value="03">03</option>
+    <option value="04">04</option>
+    <option value="05">05</option>
+    <option value="06">06</option>
+    <option value="07">07</option>
+    <option value="08">08</option>
+    <option value="09">09</option>
+    <option value="10">10</option>
+  </select>
+
+  <label for="rw">RW:</label>
+  <select id="rw">
+    <option value="">Pilih RW</option>
+    <option value="01">01</option>
+    <option value="02">02</option>
+    <option value="03">03</option>
+    <option value="04">04</option>
+    <option value="05">05</option>
+    <option value="06">06</option>
+    <option value="07">07</option>
+    <option value="08">08</option>
+    <option value="09">09</option>
+    <option value="10">10</option>
+    <option value="11">11</option>
+    <option value="12">12</option>
+    <option value="13">13</option>
+  </select>
+</div>
   <input type="text" id="nama" placeholder="Masukkan Nama Anda" />
   <button onclick="sendToWhatsApp()">Pesan Sekarang</button>
 
