@@ -1,6 +1,6 @@
 body {
-  background: black;
-  color: #00ffcc;
+  background: #fefefe;
+  color: #2c3e50;
   font-family: 'Courier New', monospace;
   display: flex;
   flex-direction: column;
@@ -12,22 +12,23 @@ body {
 }
 
 h1 {
-  text-shadow: 0 0 10px #00ffcc;
+  text-shadow: 0 0 5px #fd9644;
   font-size: 2.5em;
   margin-bottom: 20px;
+  color: #e67e22;
 }
 
 select, label {
-  color: #00ffcc;
+  color: #34495e;
   font-size: 1em;
 }
 
 select {
   padding: 8px;
   margin-bottom: 20px;
-  background: black;
-  color: #00ffcc;
-  border: 2px solid #00ffcc;
+  background: white;
+  color: #2c3e50;
+  border: 2px solid #e67e22;
   font-size: 1em;
 }
 
@@ -40,56 +41,62 @@ select {
 
 .category h4 {
   grid-column: span 2;
-  color: #00ffcc;
+  color: #2980b9;
   text-align: center;
   margin-bottom: 10px;
 }
 
 .item {
-  border: 2px solid #00ffcc;
+  border: 2px solid #3498db;
   padding: 10px;
   cursor: pointer;
   text-align: center;
   transition: transform 0.2s;
-  background: rgba(0, 255, 204, 0.1);
+  background: #ecf0f1;
+  color: #2c3e50;
 }
 
 .item:hover, .item.selected {
-  background-color: rgba(0, 255, 204, 0.2);
-  border: 2px solid #00ffcc;
-  color: #00ffcc;
+  background-color: #dff9fb;
+  border: 2px solid #00b894;
+  color: #00b894;
 }
 
 input[type="text"] {
   padding: 10px;
   font-size: 1em;
   margin-bottom: 15px;
-  border: 2px solid #00ffcc;
-  background: black;
-  color: #00ffcc;
+  border: 2px solid #00b894;
+  background: white;
+  color: #2d3436;
   width: 250px;
   text-align: center;
 }
 
 button {
   padding: 10px 20px;
-  background: #00ffcc;
+  background: #e67e22;
   border: none;
   cursor: pointer;
   font-size: 1.2em;
   font-weight: bold;
-  color: black;
+  color: white;
   margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #d35400;
 }
 
 .struk {
-  background: white;
-  color: black;
+  background: #fff;
+  color: #2d3436;
   font-family: monospace;
   padding: 10px;
   margin-top: 20px;
   width: 270px;
-  border: 2px dashed black;
+  border: 2px dashed #636e72;
   display: none;
   white-space: pre-wrap;
 }
@@ -98,7 +105,7 @@ button {
   list-style: none;
   padding: 0;
   margin: 10px 0 20px;
-  color: #00ffcc;
+  color: #2c3e50;
   width: 180px;
 }
 
@@ -106,13 +113,13 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(0, 255, 204, 0.1);
+  background: #f1f2f6;
   padding: 6px 10px;
   margin-bottom: 5px;
-  border: 1px dashed #00ffcc;
+  border: 1px dashed #7f8c8d;
   font-family: monospace;
   font-size: 16px;
-  color: #00ffcc;
+  color: #2c3e50;
 }
 
 .remove-btn {
@@ -121,11 +128,11 @@ button {
   height: 18px;
   line-height: 20px;
   text-align: center;
-  color: red;
+  color: #e74c3c;
   font-weight: bold;
-  border: 1px solid red;
+  border: 1px solid #e74c3c;
   border-radius: 4px;
-  background-color: rgba(255, 0, 0, 0.1);
+  background-color: rgba(231, 76, 60, 0.1);
   margin-left: 10px;
   cursor: pointer;
   font-size: 14px;
@@ -134,63 +141,61 @@ button {
 }
 
 .remove-btn:hover {
-  background-color: rgba(255, 0, 0, 0.3);
+  background-color: rgba(231, 76, 60, 0.3);
 }
 
 .info-btn {
   display: inline-block;
   padding: 10px 20px;
   margin-bottom: 20px;
-  background-color: #00ffcc;
-  color: black;
+  background-color: #00b894;
+  color: white;
   font-weight: bold;
   text-decoration: none;
   border-radius: 8px;
-  box-shadow: 0 0 10px #00ffcc;
+  box-shadow: 0 0 10px #00b894;
   transition: background 0.3s;
 }
 
 .info-btn:hover {
-  background-color: #00e6b8;
+  background-color: #00a183;
 }
 
-<style>
-  /* Tambahan QRIS */
-  #qris-container {
-    display: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.8);
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-  }
+#qris-container {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
 
-  #qris-box {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-  }
+#qris-box {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
 
-  #qris-box img {
-    max-width: 300px;
-    height: auto;
-  }
+#qris-box img {
+  max-width: 300px;
+  height: auto;
+}
 
-  #close-qris {
-    margin-top: 10px;
-    padding: 8px 12px;
-    background-color: red;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .seblak-btn {
-  background-color: #4CAF50;
+#close-qris {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.seblak-btn {
+  background-color: #fd9644;
   color: white;
   padding: 14px 28px;
   font-size: 1.2em;
@@ -200,12 +205,11 @@ button {
   margin-top: 30px;
   margin-bottom: 25px;
   display: inline-block;
-  box-shadow: 0 0 15px #4CAF50;
+  box-shadow: 0 0 15px #fd9644;
   transition: background-color 0.3s, transform 0.2s;
 }
 
 .seblak-btn:hover {
-  background-color: #45a049;
+  background-color: #fa8231;
   transform: scale(1.05);
 }
-</style>
