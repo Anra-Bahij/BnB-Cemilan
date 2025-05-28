@@ -6,7 +6,13 @@ const inputNama = document.getElementById('nama');
 const struk = document.getElementById('struk');
 const orderList = document.getElementById('orderList');
 const kategoriContainers = document.querySelectorAll('.category');
+const pakaiOngkirSelect = document.getElementById('pakai-ongkir');
+const alamatGroup = document.getElementById('alamat-group');
 
+pakaiOngkirSelect.addEventListener('change', () => {
+  const isPakaiOngkir = pakaiOngkirSelect.value === 'ya';
+  alamatGroup.style.display = isPakaiOngkir ? 'block' : 'none';
+});
 highlightSelected();
 
 menuItems.forEach((item) => {
@@ -44,8 +50,16 @@ function renderOrderList() {
   });
 }
 
+function hitungOngkir(rt, rw) {
+  return (rt === '07' && rw === '13') ? 0 : 8000;
+}
+
 function sendToWhatsApp() {
   const nama = inputNama.value.trim();
+  const pakaiOngkir = pakaiOngkirSelect.value === 'ya';
+  let rt = '', rw = '';
+  let ongkir = 0;
+
   if (!nama) {
     alert("Masukkan nama Anda terlebih dahulu.");
     return;
@@ -54,6 +68,18 @@ function sendToWhatsApp() {
   if (order.length === 0) {
     alert("Belum ada pesanan!");
     return;
+  }
+
+  if (pakaiOngkir) {
+    rt = document.getElementById('rt').value;
+    rw = document.getElementById('rw').value;
+
+    if (!rt || !rw) {
+      alert("Silakan pilih RT dan RW Anda.");
+      return;
+    }
+
+    ongkir = hitungOngkir(rt, rw);
   }
 
   const itemCount = {};
@@ -67,12 +93,22 @@ function sendToWhatsApp() {
     orderListText += `${index++}. ${item} x${count}\n`;
   }
 
-  const message = `Halo BnB Cemilan,%0ASaya *${nama}* ingin memesan:%0A%0A${encodeURIComponent(orderListText)}%0ATerima kasih!`;
+  if (pakaiOngkir) {
+    orderListText += `\nOngkir: Rp${ongkir.toLocaleString()}`;
+  } else {
+    orderListText += `\n*Tanpa pengantaran (diambil sendiri)*`;
+  }
+
+  const message = `Halo BnB Cemilan,%0ASaya *${nama}* ${
+    pakaiOngkir ? `dari RT ${rt}/RW ${rw}` : ""
+  } ingin memesan:%0A%0A${encodeURIComponent(orderListText)}%0A%0ATerima kasih!`;
 
   struk.style.display = 'block';
-  struk.innerText = `Nama: ${nama}\n\n${orderListText}\nTerima kasih!`;
+  struk.innerText = `Nama: ${nama}\n` +
+    (pakaiOngkir ? `RT/RW: ${rt}/${rw}\n` : 'Tanpa pengantaran\n') +
+    `\n${orderListText}\n\nTerima kasih!`;
 
-  const adminNumber = "6281513961680"; // Ganti nomor WA admin
+  const adminNumber = "6281513961680";
   window.open(`https://wa.me/${adminNumber}?text=${message}`, '_blank');
 }
 
