@@ -592,7 +592,7 @@ button {
 <h4>Cemilan</h4>
 <div class="item" data-price="12000">Roti Canai Jumbo - Rp12.000</div>
 <div class="item" data-price="6000">Roti Canai Mini - Rp6.000</div>
-<div class="item" data-price="5000">Kentang Goreng - Rp5.000</div>
+<div class="item" data-price="5000">Kentang Goreng - Rp6.000</div>
 <div class="item" data-price="6000">Donat Goreng(3pcs) - Rp6.000</div>
 <div class="item" data-price="6000">Nugget(5pcs) - Rp6.000</div>
 <div class="item" data-price="6000">Cireng Bumbu Rujak(4pcs) - Rp6.000</div>
@@ -600,12 +600,12 @@ button {
 <div class="item" data-price="13000">Beef Steak+Mix Vegetable+
 Kentang - Rp13.000</div>
 <div class="item" data-price="5000">Sosis Bakar(3pcs) - Rp5.000</div>
-<div class="item" data-price="5000">Sosis Goreng(3pcs) - Rp5.000</div>
+<div class="item" data-price="5000">Sosis Goreng(3pcs) - Rp6.000</div>
 <div class="item" data-price="7000">Sosis Bakar Jumbo - Rp7.000</div>
 </div>
 <div class="category" data-kategori="Aneka Sandwich">
 <h4>Aneka Sandwich</h4>
-<div class="item" data-price="7000">Burger Beef Slice - Rp7.000</div>
+<div class="item" data-price="7000">Burger Beef Slice - Rp8.000</div>
 <div class="item" data-price="10000">Burger Beef Patty Tebal - Rp10.000</div>
 <div class="item" data-price="10000">Burger Chicken - Rp10.000</div>
 <div class="item" data-price="8000">Hotdog - Rp8.000</div>
@@ -633,7 +633,924 @@ Kentang - Rp13.000</div>
 <label class="teks-antar" for="pakai-ongkir">Mau diantar?</label>
 <select id="pakai-ongkir">
 <option value="tidak">Tidak</option>
-<option value="ya">Ya (ongkos kirim 8k)</option>
+<option value="ya">Ya (ongkos kirim 5k)</option>
+</select>
+<div id="alamat-group" style="display: none; margin-top: 1em;">
+<label for="rt">RT:</label>
+<select id="rt">
+<option value="">Pilih RT</option>
+<option value="01">01</option>
+<option value="02">02</option>
+<option value="03">03</option>
+<option value="04">04</option>
+<option value="05">05</option>
+<option value="06">06</option>
+<option value="07">07</option>
+<option value="08">08</option>
+<option value="09">09</option>
+<option value="10">10</option>
+</select>
+<label for="rw">RW:</label>
+<select id="rw">
+<option value="">Pilih RW</option>
+<option value="01">01</option>
+<option value="02">02</option>
+<option value="03">03</option>
+<option value="04">04</option>
+<option value="05">05</option>
+<option value="06">06</option>
+<option value="07">07</option>
+<option value="08">08</option>
+<option value="09">09</option>
+<option value="10">10</option>
+<option value="11">11</option>
+<option value="12">12</option>
+<option value="13">13</option>
+</select>
+</div>
+<input id="nama" placeholder="Masukkan Nama Anda" type="text"/>
+<button onclick="sendToWhatsApp()">Pesan Sekarang</button>
+<div class="struk" id="struk"></div>
+<audio id="beep" preload="auto" src="beep.mp3"></audio>
+<script>
+    function updateStatus() {
+      const now = new Date();
+      const jam = now.getHours();
+      const menit = now.getMinutes().toString().padStart(2, '0');
+      const detik = now.getSeconds().toString().padStart(2, '0');
+      const waktuStr = `${jam}:${menit}:${detik}`;
+
+      document.getElementById("jam-sekarang").textContent = waktuStr;
+
+      const buka = jam >= 8 && jam < 21;
+      const statusEl = document.getElementById("status-text");
+      statusEl.textContent = buka ? "BUKA" : "TUTUP";
+      statusEl.style.color = buka ? "lime" : "red";
+    }
+
+    setInterval(updateStatus, 1000);
+    updateStatus();
+  </script>
+<script src="script.js"></script>
+<!-- Tombol & Modal QRIS -->
+<button class="info-btn" onclick="tampilkanQRIS()">Bayar via QRIS</button>
+<div id="qris-container">
+<div id="qris-box">
+<h3>Scan QRIS untuk Pembayaran</h3>
+<img alt="QRIS Payment" src="https://files.catbox.moe/uhpfsl.jpg"/>
+<button id="close-qris" onclick="tutupQRIS()">Tutup</button>
+</div>
+</div>
+<style>
+  /* Tambahan QRIS */
+  #qris-container {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+
+  #qris-box {
+    background: #FF7F00;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  #qris-box img {
+    max-width: 300px;
+    height: auto;
+  }
+
+  #close-qris {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+</style>
+<script>
+  function tampilkanQRIS() {
+    document.getElementById("qris-container").style.display = "flex";
+  }
+
+  function tutupQRIS() {
+    document.getElementById("qris-container").style.display = "none";
+  }
+</script>
+<button id="toggleMode" title="Ganti Mode">🌙</button>
+<script>
+  const toggleBtn = document.getElementById('toggleMode');
+  const body = document.body;
+
+  // Load mode dari localStorage
+  const savedMode = localStorage.getItem('mode') || 'dark';
+  body.classList.add(savedMode + '-mode');
+  toggleBtn.textContent = savedMode === 'dark' ? '🌙' : '🌞';
+
+  toggleBtn.addEventListener('click', () => {
+    if (body.classList.contains('dark-mode')) {
+      body.classList.remove('dark-mode');
+      body.classList.add('light-mode');
+      toggleBtn.textContent = '🌞';
+      localStorage.setItem('mode', 'light');
+    } else {
+      body.classList.remove('light-mode');
+      body.classList.add('dark-mode');
+      toggleBtn.textContent = '🌙';
+      localStorage.setItem('mode', 'dark');
+    }
+  });
+</script>
+
+<script>const order = [];
+let selectedIndex = 0;
+const menuItems = document.querySelectorAll('.item');
+const beep = document.getElementById('beep');
+const inputNama = document.getElementById('nama');
+const struk = document.getElementById('struk');
+const orderList = document.getElementById('orderList');
+const kategoriContainers = document.querySelectorAll('.category');
+const pakaiOngkirSelect = document.getElementById('pakai-ongkir');
+const alamatGroup = document.getElementById('alamat-group');
+
+pakaiOngkirSelect.addEventListener('change', () => {
+  const isPakaiOngkir = pakaiOngkirSelect.value === 'ya';
+  alamatGroup.style.display = isPakaiOngkir ? 'block' : 'none';
+});
+highlightSelected();
+
+menuItems.forEach((item) => {
+  item.addEventListener('click', () => {
+    playBeep();
+    addToOrder(item.textContent);
+  });
+});
+
+function highlightSelected() {
+  menuItems.forEach((item, i) => {
+    item.classList.toggle('selected', i === selectedIndex);
+  });
+}
+
+function addToOrder(item) {
+  order.push(item);
+  renderOrderList();
+}
+
+function removeOrder(index) {
+  order.splice(index, 1);
+  renderOrderList();
+}
+
+function renderOrderList() {
+  orderList.innerHTML = "";
+  order.forEach((item, index) => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      <span>${item}</span>
+      <span class="remove-btn" onclick="removeOrder(${index})">&times;</span>
+    `;
+    orderList.appendChild(li);
+  });
+}
+
+function hitungOngkir(rt, rw) {
+  return (rt === '07' && rw === '13') ? 0 : 8000;
+}
+
+function sendToWhatsApp() {
+  const nama = inputNama.value.trim();
+  const pakaiOngkir = pakaiOngkirSelect.value === 'ya';
+  let rt = '', rw = '';
+  let ongkir = 0;
+
+  if (!nama) {
+    alert("Masukkan nama Anda terlebih dahulu.");
+    return;
+  }
+
+  if (order.length === 0) {
+    alert("Belum ada pesanan!");
+    return;
+  }
+
+  if (pakaiOngkir) {
+    rt = document.getElementById('rt').value;
+    rw = document.getElementById('rw').value;
+
+    if (!rt || !rw) {
+      alert("Silakan pilih RT dan RW Anda.");
+      return;
+    }
+
+    ongkir = hitungOngkir(rt, rw);
+  }
+
+  const itemCount = {};
+  order.forEach(item => {
+    itemCount[item] = (itemCount[item] || 0) + 1;
+  });
+
+  let orderListText = '';
+  let index = 1;
+  for (const [item, count] of Object.entries(itemCount)) {
+    orderListText += `${index++}. ${item} x${count}\n`;
+  }
+
+  if (pakaiOngkir) {
+    orderListText += `\nOngkir: Rp${ongkir.toLocaleString()}`;
+  } else {
+    orderListText += `\n*Tanpa pengantaran (diambil sendiri)*`;
+  }
+
+  const message = `Halo BnB Cemilan,%0ASaya *${nama}* ${
+    pakaiOngkir ? `dari RT ${rt}/RW ${rw}` : ""
+  } ingin memesan:%0A%0A${encodeURIComponent(orderListText)}%0A%0ATerima kasih!`;
+
+  struk.style.display = 'block';
+  struk.innerText = `Nama: ${nama}\n` +
+    (pakaiOngkir ? `RT/RW: ${rt}/${rw}\n` : 'Tanpa pengantaran\n') +
+    `\n${orderListText}\n\nTerima kasih!`;
+
+  const adminNumber = "6287722011556";
+  window.open(`https://wa.me/${adminNumber}?text=${message}`, '_blank');
+}
+
+function playBeep() {
+  if (beep) {
+    beep.currentTime = 0;
+    beep.play();
+  }
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowDown') {
+    selectedIndex = (selectedIndex + 1) % menuItems.length;
+    highlightSelected();
+    playBeep();
+  } else if (e.key === 'ArrowUp') {
+    selectedIndex = (selectedIndex - 1 + menuItems.length) % menuItems.length;
+    highlightSelected();
+    playBeep();
+  } else if (e.key === 'Enter') {
+    playBeep();
+    addToOrder(menuItems[selectedIndex].textContent);
+  } else if (e.key === 'Escape') {
+    struk.style.display = 'none';
+  }
+});
+
+// Filter kategori
+const filterSelect = document.getElementById('filter-kategori');
+filterSelect.addEventListener('change', () => {
+  const selected = filterSelect.value;
+  kategoriContainers.forEach(container => {
+    if (selected === "all" || container.dataset.kategori === selected) {
+      container.style.display = 'grid';
+    } else {<!DOCTYPE html>
+
+<html lang="id">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BnB Cemilan</title>
+<link href="style.css" rel="stylesheet"/>
+<style>
+    .info-btn {
+      display: inline-block;
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 15px;
+      text-decoration: none;
+      border-radius: 5px;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+<style>body {
+  background: black;
+  color: #00ffcc;
+  font-family: 'Courier New', monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+}
+
+h1 {
+  text-shadow: 0 0 10px #00ffcc;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+select, label {
+  color: #00ffcc;
+  font-size: 1em;
+}
+
+select {
+  padding: 8px;
+  margin-bottom: 20px;
+  background: black;
+  color: #00ffcc;
+  border: 2px solid #00ffcc;
+  font-size: 1em;
+}
+
+.category {
+  display: grid;
+  grid-template-columns: repeat(2, 150px);
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.category h4 {
+  grid-column: span 2;
+  color: #00ffcc;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.item {
+  border: 2px solid #00ffcc;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.2s;
+  background: rgba(0, 255, 204, 0.1);
+}
+
+.item:hover, .item.selected {
+  background-color: rgba(0, 255, 204, 0.2);
+  border: 2px solid #00ffcc;
+  color: #00ffcc;
+}
+
+input[type="text"] {
+  padding: 10px;
+  font-size: 1em;
+  margin-bottom: 15px;
+  border: 2px solid #00ffcc;
+  background: black;
+  color: #00ffcc;
+  width: 250px;
+  text-align: center;
+}
+
+button {
+  padding: 10px 20px;
+  background: #00ffcc;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: black;
+  margin-top: 10px;
+}
+
+.struk {
+  background: white;
+  color: black;
+  font-family: monospace;
+  padding: 10px;
+  margin-top: 20px;
+  width: 270px;
+  border: 2px dashed black;
+  display: none;
+  white-space: pre-wrap;
+}
+
+.teks-antar {
+  color: #00ffcc;
+  font-weight: bold;
+}
+
+.filter-kategori {
+  color: #00ffcc; 
+  font-weight: bold;
+}
+
+#orderList {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 20px;
+  color: #00ffcc;
+  width: 180px;
+}
+
+#orderList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 255, 204, 0.1);
+  padding: 6px 10px;
+  margin-bottom: 5px;
+  border: 1px dashed #00ffcc;
+  font-family: monospace;
+  font-size: 16px;
+  color: #00ffcc;
+}
+
+.remove-btn {
+  display: inline-block;
+  width: 15px;
+  height: 18px;
+  line-height: 20px;
+  text-align: center;
+  color: red;
+  font-weight: bold;
+  border: 1px solid red;
+  border-radius: 4px;
+  background-color: rgba(255, 0, 0, 0.1);
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  user-select: none;
+  transition: background-color 0.2s;
+}
+
+.remove-btn:hover {
+  background-color: rgba(255, 0, 0, 0.3);
+}
+
+.info-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  background-color: #00ffcc;
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #00ffcc;
+  transition: background 0.3s;
+}
+
+.info-btn:hover {
+  background-color: #00e6b8;
+}
+
+<style>
+  /* Tambahan QRIS */
+  #qris-container {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+
+  #qris-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  #qris-box img {
+    max-width: 300px;
+    height: auto;
+  }
+
+  #close-qris {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .seblak-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 28px;
+  font-size: 1.2em;
+  font-weight: bold;
+  border-radius: 100px;
+  text-decoration: none;
+  margin-top: 30px;
+  margin-bottom: 25px;
+  display: inline-block;
+  box-shadow: 0 0 15px #4CAF50;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.seblak-btn:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+
+<style>
+  /* Tambahan QRIS */
+  #qris-container {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+
+  #qris-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  #qris-box img {
+    max-width: 300px;
+    height: auto;
+  }
+
+  #close-qris {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .seblak-btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 28px;
+  font-size: 1.2em;
+  font-weight: bold;
+  border-radius: 100px;
+  text-decoration: none;
+  margin-top: 30px;
+  margin-bottom: 25px;
+  display: inline-block;
+  box-shadow: 0 0 15px #4CAF50;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.seblak-btn:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+
+
+/*mode terang dibawah ini*/
+
+<style>
+  body {
+    background: #fefefe;
+    color: #2c3e50;
+    font-family: 'Courier New', monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+  }
+
+  h1 {
+    text-shadow: 0 0 5px #fd9644;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #e67e22;
+  }
+
+  select, label {
+    color: #34495e;
+    font-size: 1em;
+  }
+
+  select {
+    padding: 8px;
+    margin-bottom: 20px;
+    background: white;
+    color: #2c3e50;
+    border: 2px solid #e67e22;
+    font-size: 1em;
+  }
+
+  .category {
+    display: grid;
+    grid-template-columns: repeat(2, 150px);
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+
+  .category h4 {
+    grid-column: span 2;
+    color: #2980b9;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .item {
+    border: 2px solid #3498db;
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.2s;
+    background: #ecf0f1;
+    color: #2c3e50;
+    font-weight: bold;
+  }
+
+  .item:hover {
+    background-color: #f1f2f6;
+    border: 2px solid #3498db;
+    color: #2c3e50;
+  }
+
+  input[type="text"] {
+    padding: 10px;
+    font-size: 1em;
+    margin-bottom: 15px;
+    border: 2px solid #00b894;
+    background: white;
+    color: #2d3436;
+    width: 250px;
+    text-align: center;
+  }
+
+  button {
+    padding: 10px 20px;
+    background: #e67e22;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: white;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+  }
+
+  button:hover {
+    background-color: #d35400;
+  }
+
+  .struk {
+    background: #fff;
+    color: #2d3436;
+    font-family: monospace;
+    padding: 10px;
+    margin-top: 20px;
+    width: 270px;
+    border: 2px dashed #636e72;
+    display: none;
+    white-space: pre-wrap;
+  }
+
+  #orderList {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 20px;
+    color: #2c3e50;
+    width: 180px;
+  }
+
+  #orderList li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f1f2f6;
+    padding: 6px 10px;
+    margin-bottom: 5px;
+    border: 1px dashed #7f8c8d;
+    font-family: monospace;
+    font-size: 16px;
+    color: #2c3e50;
+  }
+
+  .remove-btn {
+    display: inline-block;
+    width: 15px;
+    height: 18px;
+    line-height: 20px;
+    text-align: center;
+    color: #e74c3c;
+    font-weight: bold;
+    border: 1px solid #e74c3c;
+    border-radius: 4px;
+    background-color: rgba(231, 76, 60, 0.1);
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    user-select: none;
+    transition: background-color 0.2s;
+  }
+
+  .remove-btn:hover {
+    background-color: rgba(231, 76, 60, 0.3);
+  }
+
+  .info-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    background-color: #00b894;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #00b894;
+    transition: background 0.3s;
+  }
+
+  .info-btn:hover {
+    background-color: #00a183;
+  }
+
+  #qris-container {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+
+  #qris-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+  }
+
+  #qris-box img {
+    max-width: 300px;
+    height: auto;
+  }
+
+  #close-qris {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .seblak-btn {
+    background-color: #fd9644;
+    color: white;
+    padding: 14px 28px;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 100px;
+    text-decoration: none;
+    margin-top: 30px;
+    margin-bottom: 25px;
+    display: inline-block;
+  }
+
+  .seblak-btn:hover {
+    background-color: #e1701a;
+  }
+
+  /* Mode Gelap / Terang */
+  .dark-mode {
+    background-color: #121212;
+    color: #00ffcc;
+  }
+
+  .dark-mode .item,
+  .dark-mode .struk,
+  .dark-mode input,
+  .dark-mode select {
+    background-color: #1e1e1e;
+    color: #00ffcc;
+    border-color: #00ffcc;
+  }
+
+  .dark-mode h1 {
+    color: #ffa502;
+  }
+
+  .light-mode {
+    background-color: #fefefe;
+    color: #2c3e50;
+  }
+
+#toggleMode {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: inherit;
+  transition: transform 0.2s;
+}
+
+#toggleMode:hover {
+  transform: scale(1.2);
+}
+
+</style></head>
+<body>
+<h1>BnB Cemilan</h1>
+<div id="status-container" style="text-align: center; margin-bottom: 10px;">
+<p><strong>Status:</strong> <span id="status-text">Memuat...</span></p>
+<p>Jam: <span id="jam-sekarang"></span></p>
+</div>
+<label class="filter-kategori" for="filter-kategori">Pilih Kategori:</label>
+<select id="filter-kategori">
+<option value="all">Semua</option>
+<option value="Mie Instan">Mie Instan</option>
+<option value="Cemilan">Cemilan</option>
+<option value="Aneka Sandwich">Aneka Sandwich</option>
+<option value="Minuman Hot">Hot Drink</option>
+<option value="Minuman Ice">Ice Drink</option>
+</select>
+<h3>Pesanan Anda:</h3>
+<ul id="orderList"></ul>
+<a class="button seblak-btn" href="seblak.html">Seblak BnB</a>
+<!-- Menu Kategori -->
+<div class="category" data-kategori="Mie Instan">
+<h4>Aneka Mie Instan</h4>
+<div class="item" data-price="6000">Indomie Goreng - Rp6.000</div>
+<div class="item" data-price="6000">Indomie Aceh - Rp6.000</div>
+<div class="item" data-price="6000">Indomie Rendang - Rp6.000</div>
+<div class="item" data-price="6000">Indomie Ayam Geprek - Rp6.000</div>
+<div class="item" data-price="6000">Indomie Soto - Rp6.000</div>
+<div class="item" data-price="6000">Indomie Kari - Rp6.000</div>
+<div class="item" data-price="4000">Mie Sakura - Rp4.000</div>
+<div class="item" data-price="5000">Mie Ayam - Rp5.000</div>
+<div class="item" data-price="6000">Spaghetti Wow - Rp6.000</div>
+<div class="item" data-price="4000">Tambah Telur - Rp4.000</div>
+</div>
+<div class="category" data-kategori="Cemilan">
+<h4>Cemilan</h4>
+<div class="item" data-price="12000">Roti Canai Jumbo - Rp12.000</div>
+<div class="item" data-price="6000">Roti Canai Mini - Rp6.000</div>
+<div class="item" data-price="5000">Kentang Goreng - Rp6.000</div>
+<div class="item" data-price="6000">Donat Goreng(3pcs) - Rp6.000</div>
+<div class="item" data-price="6000">Nugget(5pcs) - Rp6.000</div>
+<div class="item" data-price="6000">Cireng Bumbu Rujak(4pcs) - Rp6.000</div>
+<div class="item" data-price="8000">Beef Steak+Mix Vegetable - Rp8.000</div>
+<div class="item" data-price="13000">Beef Steak+Mix Vegetable+
+Kentang - Rp13.000</div>
+<div class="item" data-price="5000">Sosis Bakar(3pcs) - Rp5.000</div>
+<div class="item" data-price="5000">Sosis Goreng(3pcs) - Rp6.000</div>
+<div class="item" data-price="7000">Sosis Bakar Jumbo - Rp7.000</div>
+</div>
+<div class="category" data-kategori="Aneka Sandwich">
+<h4>Aneka Sandwich</h4>
+<div class="item" data-price="7000">Burger Beef Slice - Rp8.000</div>
+<div class="item" data-price="10000">Burger Beef Patty Tebal - Rp10.000</div>
+<div class="item" data-price="10000">Burger Chicken - Rp10.000</div>
+<div class="item" data-price="8000">Hotdog - Rp8.000</div>
+<div class="item" data-price="2000">Tambah Keju Slice - Rp2.000</div>
+</div>
+<div class="category" data-kategori="Minuman Hot">
+<h4>Hot Drink</h4>
+<div class="item" data-price="4000">Hot Chocolate Milk - Rp4.000</div>
+<div class="item" data-price="4000">Hot Milk Putih - Rp4.000</div>
+<div class="item" data-price="4000">Hot Black Coffee - Rp4.000</div>
+<div class="item" data-price="4000">Hot Indocafe - Rp4.000</div>
+<div class="item" data-price="4000">Hot Tea - Rp4.000</div>
+<div class="item" data-price="4000">Hot Matcha - Rp4.000</div>
+</div>
+<div class="category" data-kategori="Minuman Ice">
+<h4>Ice Drink</h4>
+<div class="item" data-price="5000">Drink Beng Beng - Rp5.000</div>
+<div class="item" data-price="5000">Good Day Cappucino - Rp5.000</div>
+<div class="item" data-price="5000">Ice Milk Cokelat - Rp5.000</div>
+<div class="item" data-price="2000">Ice Tea - Rp2.000</div>
+<div class="item" data-price="3000">Ice Tea Cup - Rp3.000</div>
+<div class="item" data-price="5000">Ice Matcha - Rp5.000</div>
+<div class="item" data-price="5000">Ice Marimas Jeruk - Rp5.000</div>
+</div>
+<label class="teks-antar" for="pakai-ongkir">Mau diantar?</label>
+<select id="pakai-ongkir">
+<option value="tidak">Tidak</option>
+<option value="ya">Ya (ongkos kirim 5k)</option>
 </select>
 <div id="alamat-group" style="display: none; margin-top: 1em;">
 <label for="rt">RT:</label>
@@ -916,6 +1833,17 @@ filterSelect.addEventListener('change', () => {
     if (selected === "all" || container.dataset.kategori === selected) {
       container.style.display = 'grid';
     } else {
+      container.style.display = 'none';
+    }
+    
+    
+  });
+});
+
+
+</script></body>
+</html>
+
       container.style.display = 'none';
     }
     
