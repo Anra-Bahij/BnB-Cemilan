@@ -204,33 +204,24 @@
     }
   }
 
-  let holdTimer;
+  let adminClick = 0;
 
-  const logo = document.getElementById("logoAdmin");
+const logo = document.getElementById("logoAdmin");
 
-  logo.addEventListener("mousedown", () => {
-    holdTimer = setTimeout(() => {
-      document.getElementById("adminModal").style.display = "flex";
-    }, 5000);
-  });
+logo.addEventListener("click", () => {
 
-  logo.addEventListener("mouseup", () => {
-    clearTimeout(holdTimer);
-  });
+  adminClick++;
 
-  logo.addEventListener("mouseleave", () => {
-    clearTimeout(holdTimer);
-  });
+  if (adminClick >= 5) {
+    document.getElementById("adminModal").style.display = "flex";
+    adminClick = 0;
+  }
 
-  logo.addEventListener("touchstart", () => {
-    holdTimer = setTimeout(() => {
-      document.getElementById("adminModal").style.display = "flex";
-    }, 5000);
-  });
+  setTimeout(() => {
+    adminClick = 0;
+  }, 3000);
 
-  logo.addEventListener("touchend", () => {
-    clearTimeout(holdTimer);
-  });
+});
 
   function loginAdmin() {
     const user = document.getElementById("adminUser").value.trim();
