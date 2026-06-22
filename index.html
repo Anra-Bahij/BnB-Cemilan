@@ -173,7 +173,7 @@
   </div>
 
   <div class="container">
-    <h1>BnB Cemilan</h1>
+    <h1 id="logoAdmin">BnB Cemilan</h1>
     <p>Cemilan kekinian yang bisa langsung kamu pesan dan antar ke rumah!</p>
     <a href="menu.html" class="btn">Pesan Sekarang</a>
 
@@ -185,23 +185,64 @@
     </div>
   </div>
 
-  <script>
-    function loginMember() {
-      const id = document.getElementById("memberCode").value.trim();
-      if (id === "") {
-        alert("Silakan masukkan ID Member.");
-        return;
-      }
+<script>
+  function loginMember() {
+    const id = document.getElementById("memberCode").value.trim();
 
-      // Cek ID Member — bisa diganti logika lebih lanjut nanti
-      const idValid = ["BNB123", "BNB456", "BNB789"];
-      if (idValid.includes(id.toUpperCase())) {
-        alert("Selamat! Kamu mendapatkan GRATIS ONGKIR sebagai member 🎉");
-        window.location.href = "menu.html?member=true";
-      } else {
-        alert("ID Member tidak valid. Silakan coba lagi.");
-      }
+    if (id === "") {
+      alert("Silakan masukkan ID Member.");
+      return;
     }
-  </script>
+
+    const idValid = ["BNB123", "BNB456", "BNB789"];
+
+    if (idValid.includes(id.toUpperCase())) {
+      alert("Selamat! Kamu mendapatkan GRATIS ONGKIR sebagai member 🎉");
+      window.location.href = "menu.html?member=true";
+    } else {
+      alert("ID Member tidak valid. Silakan coba lagi.");
+    }
+  }
+
+  let holdTimer;
+
+  const logo = document.getElementById("logoAdmin");
+
+  logo.addEventListener("mousedown", () => {
+    holdTimer = setTimeout(() => {
+      document.getElementById("adminModal").style.display = "flex";
+    }, 5000);
+  });
+
+  logo.addEventListener("mouseup", () => {
+    clearTimeout(holdTimer);
+  });
+
+  logo.addEventListener("mouseleave", () => {
+    clearTimeout(holdTimer);
+  });
+
+  logo.addEventListener("touchstart", () => {
+    holdTimer = setTimeout(() => {
+      document.getElementById("adminModal").style.display = "flex";
+    }, 5000);
+  });
+
+  logo.addEventListener("touchend", () => {
+    clearTimeout(holdTimer);
+  });
+
+  function loginAdmin() {
+    const user = document.getElementById("adminUser").value.trim();
+    const pass = document.getElementById("adminPass").value.trim();
+
+    if (user === "admin" && pass === "bnb131386") {
+      sessionStorage.setItem("bnb_admin", "true");
+      window.location.href = "admin.html";
+    } else {
+      alert("Username atau password salah!");
+    }
+  }
+</script>
 </body>
   </html>
